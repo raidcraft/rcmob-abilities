@@ -51,6 +51,9 @@ public class Enrage extends MobAbility implements Triggered {
     @TriggerHandler(ignoreCancelled = false, filterTargets = false)
     public void onDamage(DamageTrigger trigger) throws CombatException {
 
+        if (getHolder().hasEffect(EnrageEffect.class)) {
+            return;
+        }
         int currentHealth = getHolder().getHealth();
         if (currentHealth - trigger.getAttack().getDamage() < healthTreshhold * getHolder().getMaxHealth()) {
             // trigger the enrage effect
