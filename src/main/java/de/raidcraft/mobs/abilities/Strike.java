@@ -69,7 +69,7 @@ public class Strike extends MobAbility {
     @TriggerHandler(ignoreCancelled = true)
     public void onAttack(AttackTrigger trigger) throws CombatException {
 
-        if (!trigger.getAttack().isOfAttackType(EffectType.PHYSICAL)) {
+        if (!trigger.getAttack().isOfAttackType(EffectType.PHYSICAL) || !canUseAbility()) {
             return;
         }
         Attack<?,CharacterTemplate> attack = trigger.getAttack();
