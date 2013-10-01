@@ -21,7 +21,7 @@
     <artifactId>mob-abilities</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <name>RCMobs</name>
+    <name>MobAbilities</name>
 
     <parent>
         <groupId>de.raidcraft</groupId>
