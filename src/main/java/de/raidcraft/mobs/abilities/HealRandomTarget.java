@@ -11,6 +11,7 @@ import de.raidcraft.skills.api.combat.action.HealAction;
 import de.raidcraft.skills.api.exceptions.CombatException;
 import de.raidcraft.skills.api.persistance.AbilityProperties;
 import de.raidcraft.util.MathUtil;
+import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +27,46 @@ import java.util.List;
 )
 public class HealRandomTarget extends MobAbility implements Useable {
 
+    private boolean healLowestTarget;
+    private boolean smartHealing;
+
     public HealRandomTarget(Mob holder, AbilityProperties data) {
 
         super(holder, data);
     }
 
     @Override
+    public void load(ConfigurationSection data) {
+
+        healLowestTarget = data.getBoolean("heal-lowest", false);
+        smartHealing = data.getBoolean("smart-healing", true);
+    }
+
+    @Override
     public void use() throws CombatException {
 
         List<CharacterTemplate> members = new ArrayList<>(getHolder().getParty().getMembers());
-        CharacterTemplate characterTemplate = members.get(MathUtil.RANDOM.nextInt(members.size()));
-        new HealAction<>(this, characterTemplate, getTotalDamage()).run();
+        if (members.isEmpty()) {
+            return;
+        }
+
+        CharacterTemplate characterTemplate = null;
+        if (healLowestTarget) {
+            for (CharacterTemplate member : members) {
+                if (characterTemplate == null) {
+                    characterTemplate = member;
+                } else if (member.getHealth() < characterTemplate.getHealth()) {
+                    characterTemplate = member;
+                }
+            }
+        } else {
+            characterTemplate = members.get(MathUtil.RANDOM.nextInt(members.size()));
+        }
+
+        int healAmount = getTotalDamage();
+        if (characterTemplate == null || (smartHealing && characterTemplate.getHealth() > healAmount)) {
+            throw new CombatException(CombatException.Type.CANCELLED);
+        }
+        new HealAction<>(this, characterTemplate, healAmount).run();
     }
 }
