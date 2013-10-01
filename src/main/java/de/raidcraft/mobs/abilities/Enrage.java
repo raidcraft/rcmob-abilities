@@ -48,7 +48,7 @@ public class Enrage extends MobAbility implements Triggered {
         return ConfigUtil.getTotalValue(this, attackIncrease);
     }
 
-    @TriggerHandler(ignoreCancelled = false, filterTargets = false)
+    @TriggerHandler(ignoreCancelled = false)
     public void onDamage(DamageTrigger trigger) throws CombatException {
 
         if (getHolder().hasEffect(EnrageEffect.class)) {
