@@ -11,10 +11,6 @@ import de.raidcraft.skills.api.ability.Useable;
 import de.raidcraft.skills.api.combat.EffectType;
 import de.raidcraft.skills.api.exceptions.CombatException;
 import de.raidcraft.skills.api.persistance.AbilityProperties;
-import de.raidcraft.util.MathUtil;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -51,20 +47,8 @@ public class SummonMob extends MobAbility implements Useable {
         if (spawnableMob == null) {
             return;
         }
-        Location location = getHolder().getEntity().getLocation();
         for (int i = 0; i < amount; i++) {
-            Location spawnLoc;
-            int spawnIterations = 0;
-            do {
-                spawnLoc = location.clone().add(MathUtil.RANDOM.nextInt(3), 0, MathUtil.RANDOM.nextInt(3));
-                spawnIterations++;
-                if (spawnIterations > 50) {
-                    // we tried all locations
-                    return;
-                }
-            }
-            while (spawnLoc.getBlock().getType() != Material.AIR && spawnLoc.getBlock().getRelative(BlockFace.UP).getType() != Material.AIR);
-            spawnableMob.spawn(spawnLoc);
+            spawnableMob.spawn(getHolder().getEntity().getLocation());
         }
     }
 }
