@@ -1,5 +1,6 @@
 package de.raidcraft.mobs.abilities;
 
+import de.raidcraft.RaidCraft;
 import de.raidcraft.mobs.api.Mob;
 import de.raidcraft.mobs.api.MobAbility;
 import de.raidcraft.skills.api.ability.AbilityInformation;
@@ -45,6 +46,8 @@ public class SpawnBlocks extends MobAbility implements Triggered {
                         Integer.parseInt(split[1]),
                         Integer.parseInt(split[2]));
                 locations.put(location, location.getBlock().getType());
+            } else {
+                RaidCraft.LOGGER.warning("Wrong formatted location in spawn blocks config of " + getFriendlyName());
             }
         }
     }
