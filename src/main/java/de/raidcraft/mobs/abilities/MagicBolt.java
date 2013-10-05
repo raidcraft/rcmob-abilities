@@ -22,6 +22,7 @@ import de.raidcraft.skills.effects.disabling.Disarm;
 import de.raidcraft.skills.effects.disabling.Interrupt;
 import de.raidcraft.skills.effects.disabling.KnockBack;
 import de.raidcraft.skills.effects.disabling.Stun;
+import de.raidcraft.skills.effects.disabling.Web;
 import de.raidcraft.skills.util.ConfigUtil;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.util.Vector;
@@ -45,8 +46,8 @@ public class MagicBolt extends MobAbility implements Useable {
     private boolean weaken = false;
     private boolean burn = false;
     private boolean interrupt = false;
-    private boolean disable = false;
     private boolean poison = false;
+    private boolean web = false;
     private double throwUp;
     private ConfigurationSection entityDamageBonus;
     private ConfigurationSection lifeLeech;
@@ -72,9 +73,9 @@ public class MagicBolt extends MobAbility implements Useable {
         weaken = data.getBoolean("weaken", false);
         burn = data.getBoolean("burn", false);
         interrupt = data.getBoolean("interrupt", false);
-        disable = data.getBoolean("disable", false);
         poison = data.getBoolean("poison", false);
         throwUp = data.getDouble("throw-up", 0.0);
+        web = data.getBoolean("web", false);
         lifeLeech = data.getConfigurationSection("life-leech");
         entityDamageBonus = data.getConfigurationSection("entity-damage-bonus");
     }
@@ -101,6 +102,7 @@ public class MagicBolt extends MobAbility implements Useable {
                 if (burn) MagicBolt.this.addEffect(attack.getTarget(), Burn.class);
                 if (interrupt) MagicBolt.this.addEffect(attack.getTarget(), Interrupt.class);
                 if (poison) MagicBolt.this.addEffect(attack.getTarget(), Poison.class);
+                if (web) MagicBolt.this.addEffect(attack.getTarget(), Web.class);
                 if (throwUp > 0.0) {
                     attack.getTarget().getEntity().setVelocity(new Vector(0, throwUp, 0));
                 }
