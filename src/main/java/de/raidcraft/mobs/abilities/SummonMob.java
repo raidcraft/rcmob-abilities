@@ -36,6 +36,7 @@ public class SummonMob extends MobAbility implements Useable {
 
         try {
             spawnableMob = RaidCraft.getComponent(MobManager.class).getSpwanableMob(data.getString("mob"));
+            amount = data.getInt("amount", 1);
         } catch (UnknownMobException e) {
             RaidCraft.LOGGER.warning(e.getMessage());
         }
