@@ -14,6 +14,7 @@ import de.raidcraft.skills.api.trigger.TriggerHandler;
 import de.raidcraft.skills.api.trigger.Triggered;
 import de.raidcraft.skills.effects.Bleed;
 import de.raidcraft.skills.effects.Burn;
+import de.raidcraft.skills.effects.Poison;
 import de.raidcraft.skills.effects.Slow;
 import de.raidcraft.skills.effects.Weakness;
 import de.raidcraft.skills.effects.disabling.Disarm;
@@ -45,6 +46,7 @@ public class Strike extends MobAbility implements Triggered {
     private boolean burn = false;
     private boolean interrupt = false;
     private boolean silence = false;
+    private boolean poison = false;
 
     public Strike(Mob holder, AbilityProperties data) {
 
@@ -65,6 +67,7 @@ public class Strike extends MobAbility implements Triggered {
         burn = data.getBoolean("burn", false);
         interrupt = data.getBoolean("interrupt", false);
         silence = data.getBoolean("silence", false);
+        poison = data.getBoolean("poison", false);
     }
 
     @TriggerHandler(ignoreCancelled = true)
@@ -86,6 +89,7 @@ public class Strike extends MobAbility implements Triggered {
         if (burn) addEffect(attack.getTarget(), Burn.class);
         if (silence || interrupt) addEffect(attack.getTarget(), Interrupt.class);
         if (silence) addEffect(attack.getTarget(), Silence.class);
+        if (poison) addEffect(attack.getTarget(), Poison.class);
 
         attack.setDamage(getTotalDamage());
 
