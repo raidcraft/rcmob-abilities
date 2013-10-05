@@ -11,6 +11,7 @@ import de.raidcraft.skills.api.effect.common.SunderingArmor;
 import de.raidcraft.skills.api.exceptions.CombatException;
 import de.raidcraft.skills.api.persistance.AbilityProperties;
 import de.raidcraft.skills.api.trigger.TriggerHandler;
+import de.raidcraft.skills.api.trigger.Triggered;
 import de.raidcraft.skills.effects.Bleed;
 import de.raidcraft.skills.effects.Burn;
 import de.raidcraft.skills.effects.Slow;
@@ -31,7 +32,7 @@ import org.bukkit.configuration.ConfigurationSection;
         description = "A default strike with many custom options.",
         types = {EffectType.PHYSICAL, EffectType.DAMAGING}
 )
-public class Strike extends MobAbility {
+public class Strike extends MobAbility implements Triggered {
 
     private boolean knockBack = false;
     private boolean bleed = false;
