@@ -10,6 +10,7 @@ import de.raidcraft.skills.api.trigger.TriggerHandler;
 import de.raidcraft.skills.api.trigger.Triggered;
 import de.raidcraft.skills.trigger.CombatTrigger;
 import de.raidcraft.skills.trigger.EntityDeathTrigger;
+import de.raidcraft.skills.trigger.InvalidationTrigger;
 import de.raidcraft.util.ItemUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -55,6 +56,12 @@ public class SpawnBlocks extends MobAbility implements Triggered {
 
     @TriggerHandler(ignoreCancelled = true)
     public void onDeath(EntityDeathTrigger trigger) {
+
+        restoreBlocks();
+    }
+
+    @TriggerHandler(ignoreCancelled = true)
+    public void onInvalidate(InvalidationTrigger trigger) {
 
         restoreBlocks();
     }
