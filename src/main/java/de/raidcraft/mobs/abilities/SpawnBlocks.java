@@ -9,6 +9,7 @@ import de.raidcraft.skills.api.persistance.AbilityProperties;
 import de.raidcraft.skills.api.trigger.TriggerHandler;
 import de.raidcraft.skills.api.trigger.Triggered;
 import de.raidcraft.skills.trigger.CombatTrigger;
+import de.raidcraft.skills.trigger.EntityDeathTrigger;
 import de.raidcraft.util.ItemUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -53,6 +54,12 @@ public class SpawnBlocks extends MobAbility implements Triggered {
     }
 
     @TriggerHandler(ignoreCancelled = true)
+    public void onDeath(EntityDeathTrigger trigger) {
+
+        restoreBlocks();
+    }
+
+    @TriggerHandler(ignoreCancelled = true)
     public void onCombat(CombatTrigger trigger) {
 
         if (material == null || locations.isEmpty()) {
@@ -63,9 +70,14 @@ public class SpawnBlocks extends MobAbility implements Triggered {
                 location.getBlock().setType(material);
             }
         } else {
-            for (Location location : locations.keySet()) {
-                location.getBlock().setType(locations.get(location));
-            }
+            restoreBlocks();
+        }
+    }
+
+    private void restoreBlocks() {
+
+        for (Location location : locations.keySet()) {
+            location.getBlock().setType(locations.get(location));
         }
     }
 }
