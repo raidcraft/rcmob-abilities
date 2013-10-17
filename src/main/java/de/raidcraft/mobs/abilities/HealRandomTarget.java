@@ -63,7 +63,7 @@ public class HealRandomTarget extends MobAbility implements Useable {
             characterTemplate = members.get(MathUtil.RANDOM.nextInt(members.size()));
         }
 
-        int healAmount = getTotalDamage();
+        double healAmount = getTotalDamage();
         if (characterTemplate == null || (smartHealing && characterTemplate.getHealth() > healAmount)) {
             throw new CombatException(CombatException.Type.CANCELLED);
         }
