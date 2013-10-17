@@ -54,7 +54,7 @@ public class Enrage extends MobAbility implements Triggered {
         if (getHolder().hasEffect(EnrageEffect.class)) {
             return;
         }
-        int currentHealth = getHolder().getHealth();
+        double currentHealth = getHolder().getHealth();
         if (currentHealth - trigger.getAttack().getDamage() < healthTreshhold * getHolder().getMaxHealth()) {
             // trigger the enrage effect
             addEffect(getHolder(), EnrageEffect.class);
