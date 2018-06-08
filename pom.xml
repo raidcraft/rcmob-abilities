@@ -24,20 +24,15 @@
     <name>MobAbilities</name>
 
     <parent>
-        <groupId>de.raidcraft</groupId>
-        <artifactId>masterpom</artifactId>
-        <version>RELEASE</version>
+        <groupId>de.faldoria</groupId>
+        <artifactId>FaldoriaMasterPom</artifactId>
+        <version>1.12-0.1</version>
     </parent>
-
-    <scm>
-        <developerConnection>scm:git:ssh://git@raid-craft.de:22109/raid-craft-de/${project.artifactId}.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 
     <repositories>
         <repository>
-            <id>raidcraft</id>
-            <url>http://nexus.raid-craft.de/content/groups/public/</url>
+            <id>faldoria-deps</id>
+            <url>https://repo.faldoria.de/artifactory/faldoria-repo/</url>
         </repository>
     </repositories>
 
