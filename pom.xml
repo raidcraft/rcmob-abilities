@@ -20,13 +20,13 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mob-abilities</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.12-0.1-SNAPSHOT</version>
     <name>MobAbilities</name>
 
     <parent>
         <groupId>de.faldoria</groupId>
         <artifactId>FaldoriaMasterPom</artifactId>
-        <version>1.12-0.1</version>
+        <version>1.12-0.2</version>
     </parent>
 
     <repositories>
@@ -38,14 +38,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>de.raidcraft</groupId>
+            <groupId>de.faldoria</groupId>
             <artifactId>skills</artifactId>
-            <version>${rc.version}</version>
+            <version>1.12-0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>de.raidcraft</groupId>
+            <groupId>de.faldoria.mobs</groupId>
             <artifactId>mobs</artifactId>
-            <version>${rc.version}</version>
+            <version>1.12-0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
