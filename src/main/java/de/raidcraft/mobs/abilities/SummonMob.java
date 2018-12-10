@@ -81,7 +81,7 @@ public class SummonMob extends MobAbility implements Useable, Triggered {
     }
 
     @Override
-    public void use() throws CombatException {
+    public void use() {
 
         if (spawnableMob == null) {
             return;
